@@ -18,9 +18,9 @@ The following table shows the Gameport pinout:
   <tr><td>PIN8</td><td>BTN1</td></tr>
   <tr><td>PIN9</td><td>+5VDC</td></tr>
   <tr><td>PIN10</td><td>BTN3</td></tr>
-  <tr><td>PIN11</td><td>AXS3</td></tr>
+  <tr><td>PIN11</td><td>AXS2</td></tr>
   <tr><td>PIN12</td><td>GND</td></tr>
-  <tr><td>PIN13</td><td>AXS4</td></tr>
+  <tr><td>PIN13</td><td>AXS3</td></tr>
   <tr><td>PIN14</td><td>BTN2</td></tr>
   <tr><td>PIN15</td><td>BTN1</td></tr>
 </table>
