@@ -1,10 +1,11 @@
-// PCGameport
+// GameportJoystick
 // a PC gameport joystick interface for the Arduino
+// author: Jean-Pierre de la Croix
 
-const int PUSH_BUTTON_1 = 2;
-const int PUSH_BUTTON_2 = 3;
+const int PUSH_BUTTON_1 = 2; // D2
+const int PUSH_BUTTON_2 = 3; // D3
 
-const int LED_PIN = 13;
+const int LED_PIN = 13;      // D13
 
 int state = LOW;
 
@@ -27,6 +28,7 @@ void loop () {
   
   if (x_in) {
     x = 184140/x_in - 180;
+    // first order low-pass filter
     x = alpha*x + (1-alpha)*x_prev;
   } else {
     x = -1; //this should only happen if the joystick isn't connected
@@ -34,6 +36,7 @@ void loop () {
   
   if (y_in) {
     y = 184140/y_in - 180;
+    // first order low-pass filter
     y = alpha*y + (1-alpha)*y_prev;
   } else {
     y = -1; //this should only happen if the joystick isn't connected
