@@ -2,12 +2,15 @@
 // a PC gameport joystick interface for the Arduino
 // author: Jean-Pierre de la Croix
 
-const int PUSH_BUTTON_1 = 2; // D2
-const int PUSH_BUTTON_2 = 3; // D3
+// original: http://www.built-to-spec.com/blog/2009/09/10/using-a-pc-joystick-with-the-arduino/
 
-const int LED_PIN = 13;      // D13
+const byte PUSH_BUTTON_1 = 2; // D2
+const byte PUSH_BUTTON_2 = 3; // D3
 
-int state = LOW;
+const byte JOY_AXES_COUNT = 2;
+const byte JOY_BUTTON_COUNT = 2;
+
+const byte LED_PIN = 13;      // D13
 
 int y_prev = 0, x_prev = 0;
 float alpha = 0.9;
@@ -42,8 +45,8 @@ void loop () {
     y = -1; //this should only happen if the joystick isn't connected
   }
   
-  int button_state_1 = digitalRead(PUSH_BUTTON_1);
-  int button_state_2 = digitalRead(PUSH_BUTTON_2);
+  byte button_state_1 = digitalRead(PUSH_BUTTON_1);
+  byte button_state_2 = digitalRead(PUSH_BUTTON_2);
   
   if(button_state_1 == LOW || button_state_2 == LOW) {
    digitalWrite(LED_PIN, HIGH);
@@ -54,15 +57,23 @@ void loop () {
   x_prev = x;
   y_prev = y;
   
-  //Serial.print("<");
-  Serial.print(x, DEC);
+  // protocol:
+  // $ARDJOY,TIME,BTNC,AC,BTN0,BTN1,AX0,AY0
+  
+  Serial.print("$ARDJOY,");
+  Serial.print(millis());
   Serial.print(",");
-  Serial.print(y, DEC);
+  Serial.print(JOY_BUTTON_COUNT, DEC);
+  Serial.print(",");
+  Serial.print(JOY_AXES_COUNT, DEC);
   Serial.print(",");
   Serial.print(button_state_1, DEC);
   Serial.print(",");
   Serial.print(button_state_2, DEC);
-  //Serial.println(">");
+  Serial.print(",");
+  Serial.print(x, DEC);
+  Serial.print(",");
+  Serial.print(y, DEC);
   Serial.println("");
   
   delay(100);
