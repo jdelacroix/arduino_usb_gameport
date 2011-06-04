@@ -1,17 +1,18 @@
-// PCJoystick
-// a PC joystick gameport interface for the Arduino
+// PCGameport
+// a PC gameport joystick interface for the Arduino
 
 const int PUSH_BUTTON_1 = 2;
 const int PUSH_BUTTON_2 = 3;
 
-const int ledPin = 13;
+const int LED_PIN = 13;
 
 int state = LOW;
+
 int y_prev = 0, x_prev = 0;
 float alpha = 0.9;
 
 void setup() {
-  pinMode(ledPin, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
   pinMode(PUSH_BUTTON_1, INPUT);
   pinMode(PUSH_BUTTON_2, INPUT);
   Serial.begin(9600);
@@ -42,9 +43,9 @@ void loop () {
   int button_state_2 = digitalRead(PUSH_BUTTON_2);
   
   if(button_state_1 == LOW || button_state_2 == LOW) {
-   digitalWrite(ledPin, HIGH);
+   digitalWrite(LED_PIN, HIGH);
   } else {
-   digitalWrite(ledPin, LOW);
+   digitalWrite(LED_PIN, LOW);
   }
   
   x_prev = x;
