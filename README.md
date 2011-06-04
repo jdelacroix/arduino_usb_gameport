@@ -1,12 +1,12 @@
 # Arduino USB Gameport Adapter
-A USB to Gameport joystick adapter implemented on an Arduino Nano.
+A USB to Gameport joystick adapter implemented on an Arduino Nano (and any Arduino-compatible hardware).
 
-Originally from "Built to Spec" [[link](http://www.built-to-spec.com/blog/2009/09/10/using-a-pc-joystick-with-the-arduino/)]
+Originally from "Built to Spec" [[link](http://www.built-to-spec.com/blog/2009/09/10/using-a-pc-joystick-with-the-arduino/)] and modified to allow for different types of Gameport joysticks. 
 
 ## Hardware
-The analog joystick (some CH Products joystick from circa 2003) has two buttons and two axes. The two axes are wired through ADC0 and ADC1 on the Arduino in parallel with two 100kOhm pull-down resistors. The two buttons are wired through D2 and D3 on the Arduino in parallel with two 10kOhm pull-up resistors.
+The test Gameport joystick (a CH Products joystick shipped with the iRobot Magellans) has two buttons and two axes. The two axes are wired through ADC0 and ADC1 on the Arduino in parallel with two 100kOhm pull-down resistors. The two buttons are wired through D2 and D3 on the Arduino in parallel with two 10kOhm pull-up resistors.
 
-The following table shows the Gameport pinout:
+The following table shows the Gameport wiring:
 <table>
   <tr><td>PIN1</td><td>+5VDC</td></tr>
   <tr><td>PIN2</td><td>BTN0</td></tr>
@@ -15,18 +15,18 @@ The following table shows the Gameport pinout:
   <tr><td>PIN5</td><td>GND</td></tr>
   <tr><td>PIN6</td><td>AXS1</td></tr>
   <tr><td>PIN7</td><td>BTN1</td></tr>
-  <tr><td>PIN8</td><td>BTN1</td></tr>
+  <tr><td>PIN8</td><td>N/A</td></tr>
   <tr><td>PIN9</td><td>+5VDC</td></tr>
   <tr><td>PIN10</td><td>BTN3</td></tr>
   <tr><td>PIN11</td><td>AXS2</td></tr>
   <tr><td>PIN12</td><td>GND</td></tr>
   <tr><td>PIN13</td><td>AXS3</td></tr>
   <tr><td>PIN14</td><td>BTN2</td></tr>
-  <tr><td>PIN15</td><td>BTN1</td></tr>
+  <tr><td>PIN15</td><td>N/A</td></tr>
 </table>
 
 ## Interface
-The Arduino writes to the serial port (e.g., /dev/ttyUSB0) at 9600 baud using the following protocal (format):
+The Arduino writes to the serial port (e.g., /dev/ttyUSB0) at 9600 baud using the following protocol (format):
 
 $ARDJOY,TIME,BTNC,AXSC,BTN0,BTN1,...,AXS0,AXS1,...
 
